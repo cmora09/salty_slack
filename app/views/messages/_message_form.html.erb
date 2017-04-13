@@ -2,5 +2,5 @@
 	<%= f.label :Chat %>
 	<%= f.text_area :body, class: "form-control", data: {textarea: "message"} %>
 	<%= f.hidden_field :chatroom_id, value: chatroom.id %>
-	<%= f.submit "Send", class: "btn-btn-primary", style: "display:none", data: {send: "message"} %>
+	<%= f.submit "Send", class: "btn btn-primary", style: "display:none", data: {send: "message"} %>
 <% end %>

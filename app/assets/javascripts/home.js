@@ -3,7 +3,8 @@ app.controller('homeCtrl', function($scope,$http){
 	$scope.data ={
 		chatrooms: []
 	}
-	getchannels();
+	getChatrooms();
+
 	function getChatrooms(){
 		$http.get('/home/get_chatrooms')
 			.then(function(response){

@@ -1,2 +1,11 @@
-<h1>Chatrooms#new</h1>
-<p>Find me in app/views/chatrooms/new.html.erb</p>
+<%= render partial: 'partials/navbar' %>
+<div class="container-fluid">
+	<div class="col-md-4">
+		<%= form_for @chatroom do |f| %>
+			<%= f.label :Chatroom_Name %>
+			<%= f.text_field :name, class: "form-control" %>
+			<%= f.hidden_field :user_id, value: current_user.id %>
+			<%= f.submit "Add Chat Room", class: "btn btn-warning" %>
+		<% end %>
+	</div>
+</div>
