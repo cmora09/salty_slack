@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>SaltySlack</title>
+    <%= csrf_meta_tags %>
+    
+    <%= action_cable_meta_tag %>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+  <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+  <body class="bg-color-custom text-white">
+    <%= yield %>
+  </body>
+</html>

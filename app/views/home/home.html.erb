@@ -1,0 +1,8 @@
+<%= render partial: 'partials/navbar' %>
+<div class="container" ng-app="home">
+	<div class="row" ng-controller="homeCtrl">
+		<div class="col-md-4 text-center" ng-repeat="chatroom in data.chatrooms">
+			<%= link_to '{{chatroom.name}}', URI::decode_www_form_component(  chatroom_path('{{chatroom.id}}'))%>
+		</div>
+	</div>
+</div>
