@@ -36,6 +36,8 @@ gem 'redis', '~> 3.0'
 # gem 'capistrano-rails', group: :development
 gem 'bootstrap', '~> 4.0.0.alpha6'
 
+gem 'rails-assets-tether', '>= 1.3.3'
+
 gem 'angularjs-rails'
 
 gem 'devise'

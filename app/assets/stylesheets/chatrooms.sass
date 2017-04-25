@@ -3,8 +3,24 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 #messages-table
-	height: 70vh
+	height: 65vh
 	overflow-y: scroll
 	word-wrap: break-word
 	font-size: .80em
 	padding-left: 4px
+
+.active 
+	display: inline
+
+.inactive  
+	display: none
+	width: 10px
+
+.user-list
+	list-style-type: none
+	height: 50vh
+	overflow-y: scroll
+
+#add-user-btn
+	&:hover
+		cursor: pointer

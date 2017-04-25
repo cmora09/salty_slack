@@ -1,4 +1,5 @@
 class ChatroomsController < ApplicationController
+
   def new
     @chatroom = Chatroom.new
   end
@@ -13,8 +14,15 @@ class ChatroomsController < ApplicationController
   end
 
   def show
-    @chatroom = Chatroom.includes(:messages).find_by(id: params[:id])
+    @chatroom = Chatroom.find(params[:id])
+
+    redirect_with_flash unless member_of_group
+    
+    @messages = @chatroom.messages
+    @membership = Membership.new
+    @memberships = @chatroom.memberships
     @message = Message.new
+  
   end
 
   def edit
@@ -25,6 +33,8 @@ class ChatroomsController < ApplicationController
 
   def destroy
   end
+  
+
 
   private
     def chatroom_params

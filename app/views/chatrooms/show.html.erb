@@ -1,18 +1,69 @@
 <%= render partial: 'partials/navbar' %>
-<div class="container-fluid">
-	<div class="col-md-3">
-		<div class="panel-title bg-warning text-center">
-		</div>
-		<% if @chatroom.messages.any? %>
-			<div id="messages-table" class="bg-faded" data-chat-room-id="<%= @chatroom.id %>">
-				<%= render partial: 'messages/message', collection: @chatroom.messages %>
+<div ng-app="chatroom">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-3">
+				<h5><a href class="badge badge-info" id="mbr-add-btn" data-toggle="modal" data-animation="false" data-target="#mbr-modal">Add new member</a></h5>
+				<ul id="user-list">
+
+				    <% @memberships.each do |member| %>
+				    	<li>
+				        	<%= member.user.username %>
+				        	<% if member.online %>
+				            	<%= image_tag "online_dot.jpeg", id: "#{member.user_id}-status", class: "active" %>
+				        	<% else %>
+				            	<%= image_tag "offline_dot.jpg", id: "#{member.user_id}-status", class: "inactive" %>
+				        	<% end %>
+				      </li>
+				    <% end %>
+				</ul>
 			</div>
-		<% end %>
-		<div class="form-group">
-		<%= render partial: 'messages/message_form', locals: {message: @message , chatroom: @chatroom} %>
+			<div class="col-md-6">
+				<div class="bg-warning text-center">
+					<h4><%= @chatroom.name %></h4>
+				</div>
+				<% if @messages.any? %>
+					<div id="messages-table" class="bg-faded" data-chat-room-id="<%= @chatroom.id %>">
+						<%= render partial: 'messages/message', collection: @messages %>
+					</div>
+				<% end %>
+				<div class="form-group">
+				<%= render partial: 'messages/message_form', locals: {message: @message , chatroom: @chatroom} %>
+				</div>
+			</div>
 		</div>
 	</div>
-	<div class="col-md-9">
 
+	<div ng-controller="chatroomCtrl" class="modal fade bg-white" id="mbr-modal" tabindex="-1" role="dialog" aria-labelledby="mbr-modal" aria-hidden="true" >
+	 	<div class="modal-dialog modal-lg" role="document">
+	 		<div class="modal-content">
+			 	<div class="modal-header">
+		 			<h4 class="modal-title text-warning">Add new members to this channel!</h4>
+		 			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	          			<span aria-hidden="true">&times;</span>
+	        		</button>
+			 	</div>
+
+				<div class="modal-body row">
+					<div class="col-md-12">
+						<input class="form-control" type="" name="" placeholder="Search Users" ng-model="search">
+						<br>
+						<div class="container user-list">
+							<p class="text-warning">User List</p>
+							<div class="row" ng-repeat="user in data.users | filter:search">
+								<div class="col-md-8">
+									<h4><span class="badge badge-default">{{user.username}}</span></h4>
+								</div>
+								<div class="col-md-4">
+									<button id="{{user.id}}-add-member" type="button" data-remote="true" id="add-user-btn" class="btn btn-info btn-sm" ng-click="addUser(user.id,<%=@chatroom.id%>)">Invite User</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+	 	</div>
 	</div>
 </div>
+
+	
