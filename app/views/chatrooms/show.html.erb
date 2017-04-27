@@ -4,16 +4,20 @@
 		<div class="row">
 			<div class="col-md-3">
 				<h5><a href class="badge badge-info" id="mbr-add-btn" data-toggle="modal" data-animation="false" data-target="#mbr-modal">Add new member</a></h5>
-				<ul id="user-list">
+				<ul id="user-list" class="list-group">
 
 				    <% @memberships.each do |member| %>
-				    	<li>
+				    	<% if member.user.username == current_user.username %>
+				    		<li class="list-group-item list-group-item-info"> <%= member.user.username %> (You)</li
+				    	<% else %>
+				    	<li class="list-group-item text-muted">
 				        	<%= member.user.username %>
 				        	<% if member.online %>
 				            	<%= image_tag "online_dot.jpeg", id: "#{member.user_id}-status", class: "active" %>
 				        	<% else %>
 				            	<%= image_tag "offline_dot.jpg", id: "#{member.user_id}-status", class: "inactive" %>
 				        	<% end %>
+				        <% end %>
 				      </li>
 				    <% end %>
 				</ul>

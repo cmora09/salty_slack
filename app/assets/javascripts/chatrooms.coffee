@@ -20,7 +20,7 @@ app.controller 'chatroomCtrl', ($scope, $http) ->
     users: []
   
   memberAppendBuilder = (userData) ->
-    return "<li>" + userData.username + "</li>";
+    return '<li class="list-group-item text-warning">' + userData.username + '</li>';
     
 
   getAllUsers()
