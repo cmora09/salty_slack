@@ -3,13 +3,13 @@ App.onlinestatus = App.cable.subscriptions.create({
   room: window.location.pathname.split('/')[2]
   },
   received: (data) ->
-    membership = JSON.parse(data)
-    if membership.online == true
-      $(userImgIdConstructor(membership)).attr 'class', 'active'
-    if membership.online == false
-      $(userImgIdConstructor(membership)).attr 'class', 'inactive'
+    console.log data
+    if data.online == true
+      $(userImgIdConstructor(data)).attr 'class', 'active'
+    if data.online == false 
+      $(userImgIdConstructor(data)).attr 'class', 'inactive'
     return
   )
 
-userImgIdConstructor = (membership) ->
-  '#' + membership.user_id + '-status'
+userImgIdConstructor = (data) ->
+  '#' + data.user_id + '-status'

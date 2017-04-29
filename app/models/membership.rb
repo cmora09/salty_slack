@@ -7,7 +7,7 @@ class Membership < ApplicationRecord
   validates_presence_of :user_id
   validates_uniqueness_of :user_id, :scope => :chatroom_id
 
-  after_update_commit {AppearanceBroadcastJob.perform_later self}
+  # after_update_commit {AppearanceBroadcastJob.perform_later self}
   
   def is_online
     self.update_attributes(online: true)

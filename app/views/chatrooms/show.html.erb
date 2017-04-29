@@ -3,19 +3,32 @@
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-md-3">
+				<% if @chatroom.name != "general" %>
 				<h5><a href class="badge badge-info" id="mbr-add-btn" data-toggle="modal" data-animation="false" data-target="#mbr-modal">Add new member</a></h5>
+				<% end %>
 				<ul id="user-list" class="list-group">
 
 				    <% @memberships.each do |member| %>
 				    	<% if member.user.username == current_user.username %>
-				    		<li class="list-group-item list-group-item-info"> <%= member.user.username %> (You)</li
+				    		<% if member.online %>
+					    		<li class="list-group-item list-group-item-info"> 
+					    			<%= image_tag "online_dot.png", class: "active" %>
+					    			<%= member.user.username %>
+					    		</li>
+					    	<% end %>
 				    	<% else %>
-				    	<li class="list-group-item text-muted">
-				        	<%= member.user.username %>
-				        	<% if member.online %>
-				            	<%= image_tag "online_dot.jpeg", id: "#{member.user_id}-status", class: "active" %>
-				        	<% else %>
-				            	<%= image_tag "offline_dot.jpg", id: "#{member.user_id}-status", class: "inactive" %>
+				    	
+				    		<% if member.online %>
+				    			<li class="list-group-item text-muted">
+					            	<%= image_tag "online_dot.png", class: "active" %>
+					            	<%= member.user.username %>
+				      			</li>
+				        	<% elsif member.online == false %>
+					        	<li class="list-group-item text-muted">
+					        		<%= image_tag "offline_dot.png", class: "inactive" %>
+					        		<%= member.user.username %>
+					     
+					            </li>
 				        	<% end %>
 				        <% end %>
 				      </li>
@@ -26,11 +39,9 @@
 				<div class="bg-warning text-center">
 					<h4><%= @chatroom.name %></h4>
 				</div>
-				<% if @messages.any? %>
 					<div id="messages-table" class="bg-faded" data-chat-room-id="<%= @chatroom.id %>">
 						<%= render partial: 'messages/message', collection: @messages %>
 					</div>
-				<% end %>
 				<div class="form-group">
 				<%= render partial: 'messages/message_form', locals: {message: @message , chatroom: @chatroom} %>
 				</div>
@@ -57,6 +68,7 @@
 							<div class="row" ng-repeat="user in data.users | filter:search">
 								<div class="col-md-8">
 									<h4><span class="badge badge-default">{{user.username}}</span></h4>
+									<h4><span class="badge badge-default">{{user.memberships}}</span>
 								</div>
 								<div class="col-md-4">
 									<button id="{{user.id}}-add-member" type="button" data-remote="true" id="add-user-btn" class="btn btn-info btn-sm" ng-click="addUser(user.id,<%=@chatroom.id%>)">Invite User</button>
