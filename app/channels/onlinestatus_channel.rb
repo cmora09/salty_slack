@@ -26,9 +26,6 @@ class OnlinestatusChannel < ApplicationCable::Channel
       member.save!      
 
     end
-    # member = Membership.where(user_id: current_user.id, chatroom_id: params[:chatroom]).first
-    # return unless member
-
 
   end
   

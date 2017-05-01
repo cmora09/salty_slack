@@ -18,7 +18,7 @@ class ChatroomsController < ApplicationController
   def show
     @chatroom = Chatroom.find(params[:id])
     if @chatroom.name == "general"
-      @memberships = @chatroom.memberships
+      @users = User.all
       @messages = @chatroom.messages
       @message = Message.new
     else

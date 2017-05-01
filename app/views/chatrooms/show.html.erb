@@ -4,10 +4,9 @@
 		<div class="row">
 			<div class="col-md-3">
 				<% if @chatroom.name != "general" %>
-				<h5><a href class="badge badge-info" id="mbr-add-btn" data-toggle="modal" data-animation="false" data-target="#mbr-modal">Add new member</a></h5>
+					<h5><a href class="badge badge-info" id="mbr-add-btn" data-toggle="modal" data-animation="false" data-target="#mbr-modal">Add new member</a></h5>
 				<% end %>
 				<ul id="user-list" class="list-group">
-
 				    <% @memberships.each do |member| %>
 				    	<% if member.user.username == current_user.username %>
 				    		<% if member.online %>
