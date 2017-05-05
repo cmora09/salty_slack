@@ -1,4 +1,5 @@
-app = angular.module('home', [])
+app = angular.module('home', ['ngRoute'])
+
 app.controller 'homeCtrl', ($scope, $http) ->
 
   getChatrooms = ->
@@ -10,3 +11,15 @@ app.controller 'homeCtrl', ($scope, $http) ->
   $scope.data = chatrooms: []
   getChatrooms()
   return
+
+# app.config ($routeProvider)->
+	
+# 	$routeProvider.when('/chatrooms/:id', 
+# 		templateUrl: '<%= asset_path("show.html") %', 
+# 		controller: 'homeCtrl')
+# 	# .when('/red', templateUrl: 'red.htm')
+# 	# .when('/green', templateUrl: 'green.htm')
+# 	# .when '/blue', templateUrl: 'blue.htm'
+# return
+
+

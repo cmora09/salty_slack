@@ -10,9 +10,10 @@ App.chatroom = App.cable.subscriptions.create "ChatroomChannel",
     	$('#messages-table').append '<div class="panel panel-success"  id="message">' + '<p class="text-primary">' + '<strong>' + data.user + '</strong>' + ': ' + data.body + '</p>' + '</div>'
     	scroll_bottom()
 
-$(document).on 'turbolinks:load', ->
+$(document).ready ->
 	submit_message()
 	scroll_bottom()
+	return
 
 submit_message = ()->
 	$("#message_body").on 'keydown', (event) ->
