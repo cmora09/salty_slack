@@ -7,6 +7,11 @@ app.controller 'chatroomCtrl', ($scope, $http) ->
       $scope.data.users = response.data
       return
     return
+  getChatrooms = ->
+    $http.get('/home/get_chatrooms').then (response) ->
+      $scope.data.chatrooms = response.data
+      return
+    return
 
   $scope.addUser = (userId,chatroomId)->
     data = {user_id: userId, chatroom_id: chatroomId}
@@ -18,10 +23,11 @@ app.controller 'chatroomCtrl', ($scope, $http) ->
 
   $scope.data = 
     users: []
+    chatroom: []
   
   memberAppendBuilder = (userData) ->
     return '<li class="list-group-item text-warning">' + userData.username + '</li>';
     
-
+  getChatrooms()
   getAllUsers()
   return

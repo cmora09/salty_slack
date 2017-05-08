@@ -4,12 +4,23 @@
 		<div class="col-sm-3 col-md-2 hidden-xs-down sidebar">
 			<h4 class="text-info text-center">Channels</h4>
 			<ul class="list-group" ng-repeat="chatroom in data.chatrooms">
-				<li class= "badge">
+				<li class= "badge"  ng-if="chatroom.name != 'general' ">
 					<h6>
 						<%= link_to '{{chatroom.name}}', URI::decode_www_form_component(  chatroom_path('{{chatroom.id}}')), class: "nav-link text-warning" %>
 					</h6>
 				</li>
 			</ul>
+		</div>
+		<div class="col-md-8" id="general-chat">
+			<div class="bg-warning text-center">
+				<h4><%= @chatroom.name %></h4>
+			</div>
+			<div id="messages-table" class="bg-faded" data-chat-room-id="<%= @chatroom.id %>">
+				<%= render partial: 'messages/message', collection: @messages %>
+			</div>
+			<div class="form-group">
+				<%= render partial: 'messages/message_form', locals: {message: @message , chatroom: @chatroom} %>
+			</div>
 		</div>
 	</div>
 </div>

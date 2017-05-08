@@ -12,14 +12,5 @@ app.controller 'homeCtrl', ($scope, $http) ->
   getChatrooms()
   return
 
-# app.config ($routeProvider)->
-	
-# 	$routeProvider.when('/chatrooms/:id', 
-# 		templateUrl: '<%= asset_path("show.html") %', 
-# 		controller: 'homeCtrl')
-# 	# .when('/red', templateUrl: 'red.htm')
-# 	# .when('/green', templateUrl: 'green.htm')
-# 	# .when '/blue', templateUrl: 'blue.htm'
-# return
 
 

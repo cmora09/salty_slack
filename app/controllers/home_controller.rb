@@ -3,6 +3,9 @@ class HomeController < ApplicationController
   before_action :authenticate_user!
   
   def home
+    @chatroom = Chatroom.where(name: "general").first
+    @messages = @chatroom.messages
+    @message = Message.new
   	if user_signed_in?
 
   	else
